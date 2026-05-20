@@ -1,10 +1,38 @@
 # open-design-skill
 
-A Claude Code / agent skill that brings the [Open Design](https://github.com/nexu-io/open-design)
-catalogue into any agent session.
+A community SKILL.md companion to [Open Design](https://github.com/nexu-io/open-design):
+a thin wrapper that brings Open Design's curated catalogue into any agent
+session following the SKILL.md convention (Claude Code, Codex, Cursor,
+Gemini CLI, OpenCode, …) — **without** running Open Design's local
+daemon.
 
-- **150+ brand DESIGN.md files** (Airbnb, Apple, BMW, Bugatti, Claude, Cursor,
-  Discord, Figma, Framer, Stripe, …).
+## Relationship to Open Design
+
+- **Open Design** (upstream: [nexu-io/open-design](https://github.com/nexu-io/open-design))
+  is the full local-first design substrate. It owns the curated catalogue
+  (design systems, rendering templates, functional skills, craft references)
+  plus a Next.js web app and a local daemon that orchestrates the user's
+  code-agent CLI, hosts an iframe preview, runs comment mode for surgical
+  edits, and exposes live tweak sliders.
+- **This skill** is a thin `SKILL.md` wrapper that proxies Open Design's
+  *content* — design systems, rendering templates, craft rules — into agent
+  sessions. It reads from a local clone of the upstream repo and instructs
+  the agent to compose a `DESIGN.md` + opted-in craft + a chosen template's
+  workflow body. That composition mirrors what Open Design's daemon does
+  internally before dispatching to the user's agent. This skill ships none
+  of Open Design's content, daemon, web app, or interactive design surfaces
+  — see [How it differs from running Open Design itself](#how-it-differs-from-running-open-design-itself)
+  below for the specific surfaces that are out of scope.
+- **This is not an official Open Design distribution.** It is a
+  community-maintained skill packaging that depends on a local clone of the
+  upstream repo. For canonical features and the maintained catalogue, see
+  the upstream repo. Issues with the catalogue itself belong upstream;
+  issues with how this skill packages and invokes that content belong here.
+
+## What's in the catalogue
+
+- **150+ brand DESIGN.md files** (Airbnb, Apple, BMW, Bugatti, Claude,
+  Cursor, Discord, Figma, Framer, Stripe, …).
 - **110+ rendering templates** for decks, prototypes, dashboards, landing
   pages, posters, image/video/audio.
 - **130+ functional skills** (briefs, audits, copywriting, critique, …).
@@ -14,8 +42,8 @@ catalogue into any agent session.
 What this skill does, in one sentence: lets the agent pick a design system
 plus a template/skill once per project, layer in the craft rules that
 template opts into, and follow the resulting composed workflow — the same
-prompt composition Open Design's daemon does, without needing the daemon to
-be running.
+prompt composition Open Design's daemon does, without needing the daemon
+to be running.
 
 ## Install
 
